@@ -1,0 +1,41 @@
+.information-div:nth-child(odd) {
+  background-color: #a2b9bc;
+}
+
+.information-div:nth-child(even) {
+  background-color: #b2ad7f;
+}
+
+.information-div {
+  font-size: 20px;
+  padding: 20px;
+  
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+form {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr 1fr;
+}
+
+p,
+textarea {
+  grid-row: 1;
+}
+
+button {
+  grid-row: 2;
+}
+
+textarea,
+#submitButton {
+  display: none;
+}
+
+p,
+#editButton {
+  /* display: none; */
+}
