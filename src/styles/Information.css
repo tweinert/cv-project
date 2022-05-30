@@ -18,16 +18,20 @@ form {
   grid-column: 2;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 3fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+}
+
+h3 {
+  grid-row: 1;
 }
 
 p,
 textarea {
-  grid-row: 1;
+  grid-row: 2;
 }
 
 button {
-  grid-row: 2;
+  grid-row: 3;
 }
 
 textarea,

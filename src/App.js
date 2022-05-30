@@ -6,9 +6,9 @@ class App extends React.Component {
   render() {
     return (
       <div id="app-div">
-        <Information />
-        <Information />
-        <Information />
+        <Information heading="General Information"/>
+        <Information heading="Educational Experience"/>
+        <Information heading="Practical Experience"/>
       </div>
     );
   }
