@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import "./../styles/Information.css";
 
 function Information(props) {
-  /*
-  Include paragraph, textarea, edit button, submit button.
-  Use Display: none to switch between p + edit, and textarea + submit.
-  */
+  const [showEdit, setShowEdit] = useState(false);
   const [text, setText] =
     useState(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
   ornare convallis sapien eget varius. Fusce eros nisi, posuere eu
@@ -15,53 +12,46 @@ function Information(props) {
   sagittis arcu ac velit condimentum pretium. Suspendisse potenti. Sed
   vitae nisi laoreet, ornare lectus ac, gravida turpis.`);
 
+
+  function handleToggleDisplay() {    
+    setShowEdit((current) => !current);
+  }
+
+  function handleChange(event) {
+    setText(event.target.value);
+  }
+
   return (
-    <div className="information-div">
+    <div className="information-div" id={props.heading}>
       <form>
         <h3>{props.heading}</h3>
-        <p id="paragraph">{text}</p>
-        <textarea id="textArea"></textarea>
-        <button type="button" id="editButton" onClick={handleEditButton}>
-          Edit
-        </button>
-        <button type="button" id="submitButton" onClick={handleSubmitButton}>
-          Submit
-        </button>
+        {!showEdit && (
+          <div>
+            <p id="paragraph">{text}</p>
+            <button 
+              type="button" 
+              id="editButton" 
+              onClick={handleToggleDisplay}
+            >
+              Edit
+            </button>
+          </div>
+        )}
+        {showEdit && (
+          <div>
+            <textarea id="textArea" onChange={handleChange}>{text}</textarea>
+            <button
+              type="button"
+              id="submitButton"
+              onClick={handleToggleDisplay}
+            >
+              Submit
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );
-
-  function handleEditButton() {
-    const para = document.getElementById("paragraph");
-    const textArea = document.getElementById("textArea");
-    const editButton = document.getElementById("editButton");
-    const submitButton = document.getElementById("submitButton");
-
-    textArea.style.display = "block";
-    submitButton.style.display = "block";
-
-    textArea.value = para.innerHTML;
-
-    para.style.display = "none";
-    editButton.style.display = "none";
-  }
-
-  function handleSubmitButton() {
-    const para = document.getElementById("paragraph");
-    const textArea = document.getElementById("textArea");
-    const editButton = document.getElementById("editButton");
-    const submitButton = document.getElementById("submitButton");
-
-    setText(textArea.value);
-
-    para.style.display = "block";
-    editButton.style.display = "block";
-
-    para.innerHTML = text;
-
-    textArea.style.display = "none";
-    submitButton.style.display = "none";
-  }
 }
 
 export default Information;
